@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title></title>
+  <style type="text/css">
+    html,body {
+      padding: 0;
+      margin: 0;
+    }
+    div {
+      padding: 0;
+      margin: 0;
+      height: 100px;
+    }
+    div.tap {
+      background-color: #a0a;
+    }
+    div.longtap {
+      background-color: #0f0;
+    }
+    div.flick {
+      background-color: #f00;
+    }
+    div p {
+      margin:0;
+      padding:0;
+      padding-top: 30px;
+      text-align: center;
+      font-size: 24px;
+      color: #fff;
+      font-family: helvetica, arial, sans-serif;
+    }
+    .color {
+      background-color: #00f;
+    }
+  </style>
+  <script src="flick.js"></script>
+</head>
+<body>
+  <div id="" class="color">
+    <p></p>
+  </div>
+  <div class="spacer">
+  </div><!-- /spacer -->
+  <div id="drop" class="color">
+    <p></p>
+  </div><!-- /drop -->
+  <div class="spacer">
+  </div><!-- /spacer -->
+  <div id="" class="color">
+    <p></p>
+  </div><!-- /drop -->
+  <div class="spacer">
+  </div><!-- /spacer -->
+  <div id="" class="color">
+    <p></p>
+  </div><!-- /drop -->
+  <div class="spacer">
+  </div><!-- /spacer -->
+  <div id="" class="color">
+    <p></p>
+  </div><!-- /drop -->
+  <script type="text/javascript" charset="utf-8" async defer>
+    Tap( "div.color" );
+    var divs = document.querySelectorAll("div.color");
+    for (var i = 0; i < divs.length; i++ ){
+      divs[i].addEventListener( 'flick', function( e ) {
+        console.log( e );
+        e.currentTarget.querySelector("p").innerHTML =
+          "Flick: (" + Math.round( e.distance) + "px, &ang;" + Math.round( e.angle * 100) / 100 + "&deg;)";
+      }, false );
+      divs[i].addEventListener( 'tap', function( e ) {
+        console.log( e );
+        e.currentTarget.querySelector("p").innerHTML =
+          "Tap!";
+        if ( e.tapCount === 5 ) {
+          alert( "You've tapped 5 times. That's gross.");
+        }
+      }, false );
+      divs[i].addEventListener( 'longtap', function( e ) {
+        console.log( e );
+        e.currentTarget.querySelector("p").innerHTML =
+          "Long Tap!";
+      }, false );
+    }
+  </script>
+</body>
+</html>
